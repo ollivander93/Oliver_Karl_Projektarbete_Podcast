@@ -19,6 +19,12 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Grid HorizontalAlignment="Left" Height="87" Margin="-426,461,-161,-90" VerticalAlignment="Top" Width="1344"/>
+        <Grid HorizontalAlignment="Left" Height="87" Margin="-334,464,-164,-93" VerticalAlignment="Top" Width="1344">
+            <Button x:Name="btnPlay" Content="" HorizontalAlignment="Left" Margin="114,24,0,0" VerticalAlignment="Top" Width="46" Height="38" RenderTransformOrigin="-0.492,0.221" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="C:\Users\Oliver\Documents\GitHub\Oliver_Karl_Projektarbete_Podcast\Icons\play_icon.ico"/>
+                </Button.Background>
+            </Button>
+        </Grid>
     </Grid>
 </Window>
