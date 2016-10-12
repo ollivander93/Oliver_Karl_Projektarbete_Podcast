@@ -1,0 +1,19 @@
+﻿<Window x:Class="Podcast_ProjektB.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Podcast_ProjektB"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="590" Width="1349" ResizeMode="NoResize" Foreground="#FFFFFEFE">
+    <TreeView x:Name="treeView1" HorizontalAlignment="Left" Height="446" Margin="0,27,0,0" VerticalAlignment="Top" Width="275" Background="#FF616161" Foreground="#FFECDFDF" FontSize="16" OpacityMask="#FFFFFCFC" BorderBrush="#FF616161">
+        <TreeView.ContextMenu>
+            <ContextMenu AllowDrop="True" Background="#FF616161" Foreground="#FFF9F9F9" HorizontalAlignment="Left" Cursor="Hand">
+                <MenuItem Header="Add Category..." Click="AddCategory_Clicked"/>
+                <MenuItem Header="Add Podcast..."/>
+                <MenuItem Header="Change name..."/>
+                <MenuItem Header="Remove...."/>
+            </ContextMenu>
+        </TreeView.ContextMenu>
+    </TreeView>
+</Window>
