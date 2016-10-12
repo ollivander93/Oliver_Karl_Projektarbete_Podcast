@@ -27,10 +27,14 @@ namespace Podcast_ProjektB
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Rss rss;
         public MainWindow()
         {
             InitializeComponent();
             populateTreeView(treeView1, XDocument.Load(@"C:\Users\Oliver\Documents\GitHub\Podcast_projektB\Podcast_projekt\bin\Debug\podcasts.xml"));
+            rss = new Podcast_ProjektB.Rss("url", "name");
+            rss.getFeed();
+            loadPodcasts();
         }
 
         private void populateNodes(TreeViewItem treeNode, XElement xmlElement)
@@ -78,6 +82,17 @@ namespace Podcast_ProjektB
             item.Header = "Ny";
 
 
+        }
+
+        private void loadPodcasts()
+        {
+            List<Podcast> podcasts = rss.getFeed();
+            foreach(Podcast pod in podcasts)
+            {
+                ListBoxItem item = new ListBoxItem();
+                item.Tag = pod.getSubject();
+                podcastList.Items.Add(pod.getSubject());
+            }
         }
     } 
     
