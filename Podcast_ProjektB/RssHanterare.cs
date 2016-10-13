@@ -9,23 +9,22 @@ using System.ServiceModel.Syndication;
 
 namespace Podcast_ProjektB
 {
-    class Rss
+    class RssHanterare
     {
+        private Datalager data;
         private string name;
         private string url;
         private string description;
-        public Rss(string url, string name)
+        public RssHanterare(string url, string name)
         {
-            this.url = "http://alexosigge.libsyn.com/rss";
+            this.url = "http://api.sr.se/api/rss/program/4845";
             this.name = name;
+            data = new Datalager();
         }
 
         public List<Podcast> getFeed()
         {
-            XmlReaderSettings settings = new XmlReaderSettings();
-            settings.DtdProcessing = DtdProcessing.Parse;
-            settings.MaxCharactersFromEntities = 1024;
-            XmlReader reader = XmlReader.Create(url, settings);
+            XmlReader reader = data.getRssFeed(url);
             SyndicationFeed feed = SyndicationFeed.Load(reader);
             reader.Close();
             List<Podcast> podCastList = new List<Podcast>();

@@ -56,8 +56,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Datalager.cs" />
     <Compile Include="Podcast.cs" />
-    <Compile Include="Rss.cs" />
+    <Compile Include="RssHanterare.cs" />
+    <Compile Include="XmlHanterare.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

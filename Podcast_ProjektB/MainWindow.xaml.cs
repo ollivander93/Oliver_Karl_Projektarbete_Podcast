@@ -27,61 +27,21 @@ namespace Podcast_ProjektB
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Rss rss;
+        private RssHanterare rss;
+        private XmlHanterare xmlhant;
         public MainWindow()
         {
             InitializeComponent();
-            populateTreeView(treeView1, XDocument.Load(@"C:\Users\Oliver\Documents\GitHub\Podcast_projektB\Podcast_projekt\bin\Debug\podcasts.xml"));
-            rss = new Podcast_ProjektB.Rss("url", "name");
+            xmlhant = new XmlHanterare();
+            populateTree();
+            rss = new Podcast_ProjektB.RssHanterare("url", "name");
             rss.getFeed();
             loadPodcasts();
         }
 
-        private void populateNodes(TreeViewItem treeNode, XElement xmlElement)
+        private void populateTree()
         {
-            foreach (XNode child in xmlElement.Nodes())
-            {
-                switch(child.NodeType)
-                {
-                    case XmlNodeType.Element:
-                        XElement childElement = child as XElement;
-                        TreeViewItem childTreeNode = new TreeViewItem
-                        {
-                            Header = childElement.Attributes().First(s => s.Name == "value").Value,
-                            IsExpanded = true,
-                            Foreground = Brushes.White
-                };
-                        treeNode.Items.Add(childTreeNode);
-                        populateNodes(childTreeNode, childElement);
-                        break;
-
-                    case XmlNodeType.Text:
-                        XText childText = child as XText;
-                        treeNode.Items.Add(new TreeViewItem { Header = childText.Value, });
-                        break;
-                }
-            }
-        }
-
-        private void populateTreeView(TreeView treeView, XDocument xDoc)
-        {
-            TreeViewItem node = new TreeViewItem
-            {
-                Header = xDoc.Root.Name.LocalName,
-                IsExpanded = true
-            };
-
-            treeView.Items.Add(node);
-            populateNodes(node, xDoc.Root);
-
-            }
-
-        private void AddCategory_Clicked(object sender, RoutedEventArgs e)
-        {
-            TreeViewItem item = new TreeViewItem();
-            item.Header = "Ny";
-
-
+            xmlhant.populateTreeView(treeView1);
         }
 
         private void loadPodcasts()
@@ -93,6 +53,11 @@ namespace Podcast_ProjektB
                 item.Tag = pod.getSubject();
                 podcastList.Items.Add(pod.getSubject());
             }
+        }
+
+        private void OnTreeViewSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            TreeViewItem item = treeView1.ItemContainerGenerator.ContainerFromItem(SelectedItem) as TreeViewItem;
         }
     } 
     
